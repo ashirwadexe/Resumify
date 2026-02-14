@@ -1,16 +1,84 @@
-# React + Vite
+# Resumify – AI Resume Builder (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Resumify is a modern, AI-powered resume builder frontend that helps users create, optimize, preview, and share professional resumes effortlessly.  
+This frontend is built with **React**, **Tailwind CSS**, and integrates seamlessly with backend APIs and AI services.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- 🔐 User Authentication (Login / Signup)
+- 📊 Dashboard to manage multiple resumes
+- 📝 Create new resume or upload existing one
+- 🤖 AI-powered resume optimization
+- 👀 Live resume preview
+- 🔗 Share resume via live public link
+- 📥 Download resume as PDF
+- 🎨 Multiple modern resume templates
+- 🖼 Upload profile image & remove background
+- ⚡ Fast, responsive, and clean UI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack (Frontend)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React.js**
+- **React Router DOM**
+- **Tailwind CSS**
+- **Lucide React (Icons)**
+- **ImageKit (Image Handling)**
+- **Gemini API (AI Integration)**
+
+---
+
+## 📂 Project Structure
+
+src/
+├── components/ # Reusable UI components
+├── pages/ # Application pages (Home, Dashboard, Builder, Preview)
+├── routes/ # App routing
+├── assets/ # Images, icons, logos
+├── utils/ # Helper functions
+├── App.jsx
+└── main.jsx
+
+
+---
+
+## 🔁 Application Flow (How It Works)
+
+1. User creates an account or logs in
+2. Redirected to dashboard
+3. Create a new resume or upload an existing one
+4. Add or edit resume details
+5. Preview resume in real time
+6. Download resume or share live link
+
+---
+
+## 🧩 Routing Overview
+
+- `/` → Home
+- `/login` → Login / Signup
+- `/app` → Dashboard (Protected)
+- `/app/builder/:resumeId` → Resume Builder
+- `/view/:resumeId` → Public Resume Preview
+
+---
+
+## 📦 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/resumify-frontend.git
+
+# Navigate to project directory
+cd resumify-frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+

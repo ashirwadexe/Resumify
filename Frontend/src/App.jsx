@@ -14,8 +14,11 @@ const App = () => {
         <Route path='/' element={<Home/>} />
 
         <Route path='app' element={<Layout/>}>
+
+          {/* CHILDREN COMPONENTS OF APP ROUTE */}
           <Route index element={<Dashboard/>} />
           <Route path='builder/:resumeId' element={<ResumeBuilder/>} />
+          
         </Route>
 
         <Route path='view/:resumeId' element={<Preview/>} />

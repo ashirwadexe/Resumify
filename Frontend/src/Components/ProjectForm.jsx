@@ -1,4 +1,4 @@
-import { GraduationCap, Plus, Trash2 } from 'lucide-react';
+import { FolderIcon, Plus, Trash2 } from 'lucide-react';
 import React from 'react'
 
 const ProjectForm = ({data, onChange}) => {
@@ -46,7 +46,7 @@ const ProjectForm = ({data, onChange}) => {
 
         {data.length === 0 ? (
             <div className='text-center py-8 text-gray-500'>
-                <GraduationCap className='w-12 h-12 mx-auto mb-3 text-gray-300'/>
+                <FolderIcon className='w-12 h-12 mx-auto mb-3 text-gray-300'/>
                 <p className='text-xs'>No project detail added yet.</p>
                 <p className='text-xs'>Click "Add Project" to get started.</p>
             </div>

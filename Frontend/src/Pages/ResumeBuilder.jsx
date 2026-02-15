@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Link, useParams} from 'react-router-dom';
-import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react';
+import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, DownloadIcon, EyeIcon, EyeOff, EyeOffIcon, FileText, FolderIcon, GraduationCap, Share2Icon, Sparkles, User } from 'lucide-react';
 import { dummyResumeData } from '../assets/assets';
 import PersonalInfoForm from '../Components/PersonalInfoForm';
 import ResumePreview from '../Components/ResumePreview';
@@ -50,11 +50,33 @@ const ResumeBuilder = () => {
     {id: "skills", name: "Skills", icon: Sparkles},
   ];
 
-  const activeSection = sections[activeSectionIndex]
+  const activeSection = sections[activeSectionIndex];
 
   useEffect(() => {
     loadExistingResume();
   }, []);
+
+  // function to make resume public-shareable and private-not sharable
+  const changeResumeVisibility = async () => {
+    setResumeData({...resumeData, public: !resumeData.public});
+  };
+
+  // function to share resume
+  const handleShare = () => {
+    const frontendUrl = window.location.href.split('/app/')[0];
+    const resumeUrl = frontendUrl + '/view/' + resumeId;
+
+    if(navigator.share) {
+      navigator.share({url: resumeUrl, text: "My Resume", });
+    } else {
+      alert('Share not supported on this browser.');
+    }
+  };
+
+  // function to donwload resume
+  const donwloadResume = () => {
+    window.print();
+  } 
 
 
 
@@ -170,13 +192,45 @@ const ResumeBuilder = () => {
                   />
                 )}
             </div>
+
+            {/* SAVE CHANGES BUTTON */}
+            <button className='bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>Save Changes</button>
+
           </div>
         </div>
 
         {/* RIGHT PANEL - FORM - FOR THE LIVE PREVIEW OF RESUME */}
         <div className='lg:col-span-7 max-lg:mt-6'>
-          <div>
-            {/* BUTTONS to SAVE, PUBLIC/PRIVATE and SHARE */}
+          
+          {/* BUTTONS to SAVE, PUBLIC/PRIVATE and SHARE */}
+          <div className='relative w-full'>
+            <div className='absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2'>
+                {resumeData.public && (
+                  <button
+                  onClick={handleShare}
+                    className='flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors'
+                  >
+                    <Share2Icon className='size-4'/>
+                    Share
+                  </button>
+                )}
+
+                <button
+                onClick={changeResumeVisibility}
+                  className='flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-purple-100 to-purple-200 text-purple-600 rounded-lg ring-purple-300 hover:ring transition-colors'
+                >
+                  {resumeData.public ? <EyeIcon className='size-4'/> : <EyeOffIcon className='size-4'/>}
+                  {resumeData.public ? 'Public' : 'Private'}
+                </button>
+
+                <button 
+                  onClick={donwloadResume}
+                  className='flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-green-100 to-green-200 text-green-600 rounded-lg ring-green-300 hover:ring transition-colors'
+                >
+                  <DownloadIcon className='size-4' />
+                  Download
+                </button>
+            </div>
           </div>
 
           {/* RESUME PREVIEW */}

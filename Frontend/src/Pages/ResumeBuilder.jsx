@@ -3,6 +3,9 @@ import {Link, useParams} from 'react-router-dom';
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react';
 import { dummyResumeData } from '../assets/assets';
 import PersonalInfoForm from '../Components/PersonalInfoForm';
+import ResumePreview from '../Components/ResumePreview';
+import TemplateSelector from '../Components/TemplateSelector';
+import ColorPicker from '../Components/ColorPicker';
 
 const ResumeBuilder = () => {
 
@@ -72,9 +75,18 @@ const ResumeBuilder = () => {
             {/* Section navigation  */}
             <div className='flex justify-between items-center mb-6 border-b border-gray-300 py-1'>
 
-              <div>
-
+              {/* BUTTON TO CHANGE TEMPLATE AND ACCENT COLOR */}
+              <div className='flex items-center gap-2'>
+                <TemplateSelector 
+                  selectedTemplate={resumeData.template}
+                  onChange={(template) => setResumeData(prev => ({...prev, template}))}
+                />
+                <ColorPicker
+                  selectedColor={resumeData.accent_color}
+                  onChange={(color) => setResumeData(prev => ({...prev, accent_color:color}))}
+                />
               </div>
+
               {/* Next and Previous Button */}
               <div className='flex items-center'>
                 {
@@ -113,8 +125,19 @@ const ResumeBuilder = () => {
           </div>
         </div>
 
-        {/* RIGHT PANEL - FORM */}
-        <div></div>
+        {/* RIGHT PANEL - FORM - FOR THE LIVE PREVIEW OF RESUME */}
+        <div className='lg:col-span-7 max-lg:mt-6'>
+          <div>
+            {/* BUTTONS */}
+          </div>
+
+          {/* RESUME PREVIEW */}
+          <ResumePreview 
+            data={resumeData} 
+            template={resumeData.template} 
+            accentColor={resumeData.accent_color}
+          />
+        </div>
 
       </div>
 

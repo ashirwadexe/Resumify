@@ -53,8 +53,8 @@ const ExperienceForm = ({data, onChange}) => {
         {/* WHEN WE DON'T HAVE A EXPERINCE WE WILL PROVIDE A EMPTY FORM TO ADD EXP and if we have an existing exp we will provide it to update*/}
         {data.length === 0 ? (
             <div className='text-center py-8 text-gray-500'>
-                <Briefcase className='w-12 h-12 mx-auto mb-3 text-gray-300'/>
-                <p className='text-xs'>No work experience added yet.</p>
+                <Briefcase className='w-10 h-10 mx-auto mb-3 text-gray-300'/>
+                <p>No work experience added yet.</p>
                 <p className='text-xs'>Click "Add Experience" to get started.</p>
             </div>
         ): (

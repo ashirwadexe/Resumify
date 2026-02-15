@@ -6,6 +6,7 @@ import PersonalInfoForm from '../Components/PersonalInfoForm';
 import ResumePreview from '../Components/ResumePreview';
 import TemplateSelector from '../Components/TemplateSelector';
 import ColorPicker from '../Components/ColorPicker';
+import ProfessionalSummary from '../Components/ProfessionalSummary';
 
 const ResumeBuilder = () => {
 
@@ -88,6 +89,7 @@ const ResumeBuilder = () => {
               </div>
 
               {/* Next and Previous Button */}
+              {/* The previour <- button will only show when the ActiveSectionIndex is not 0 means jb pahle page pe ham nhi honge */}
               <div className='flex items-center'>
                 {
                   activeSectionIndex !== 0 && (
@@ -113,12 +115,22 @@ const ResumeBuilder = () => {
 
             {/* FORM CONTENT */}
             <div className='space-y-6'>
+                {/* PEROSNAL INFORMATION SECTION */}
                 {activeSection.id === "personal" && (
                   <PersonalInfoForm 
                     data={resumeData.personal_info} 
                     onChange={(data) => setResumeData(prev => ({...prev, personal_info:data}))} 
                     removeBackground={removeBackground} 
                     setRemoveBackground={setRemoveBackground}
+                  />
+                )}
+
+                {/* PROFESSIONAL SUMMARY SECTION */}
+                {activeSection.id === "summary" && (
+                  <ProfessionalSummary
+                    data={resumeData.professional_summary}
+                    onChange={(data) => setResumeData(prev => ({...prev, professional_summary:data}))}
+                    setResumeData={setResumeData}
                   />
                 )}
             </div>
@@ -128,7 +140,7 @@ const ResumeBuilder = () => {
         {/* RIGHT PANEL - FORM - FOR THE LIVE PREVIEW OF RESUME */}
         <div className='lg:col-span-7 max-lg:mt-6'>
           <div>
-            {/* BUTTONS */}
+            {/* BUTTONS to SAVE, PUBLIC/PRIVATE and SHARE */}
           </div>
 
           {/* RESUME PREVIEW */}

@@ -1,0 +1,68 @@
+# ===============================
+# Node / Express
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# ===============================
+# React / Frontend
+# ===============================
+build/
+dist/
+.vite/
+.next/
+out/
+
+# ===============================
+# Logs
+# ===============================
+logs/
+*.log
+
+# ===============================
+# OS files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Editor / IDE
+# ===============================
+.vscode/
+.idea/
+*.swp
+
+# ===============================
+# Testing / Coverage
+# ===============================
+coverage/
+
+# ===============================
+# Uploads / Temp files
+# ===============================
+uploads/
+tmp/
+temp/
+
+# ===============================
+# ImageKit / Cloudinary temp
+# ===============================
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# ===============================
+# Misc
+# ===============================
+.cache/
+.eslintcache

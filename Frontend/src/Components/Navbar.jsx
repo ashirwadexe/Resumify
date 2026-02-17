@@ -1,16 +1,20 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { logout } from '../App/Features/AuthSlice';
 
 const Navbar = () => {
-    
-    const user = {
-        name: 'Ashirwad'
-    };
+
+    const { user } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
+    // here we are not using our logout controller logic of backend here
+    // but we are using react-reduc logout function created in authslice.js file to logout
     const logoutUser = () => {
         navigate('/');
+        dispatch(logout());
     };
 
     return (

@@ -4,6 +4,7 @@ import "dotenv/config";
 import connectDB from "./configs/db.js";
 import userRouter from "./routes/user.route.js";
 import resumeRouter from "./routes/resume.routes.js";
+import aiRouter from "./routes/ai.route.js";
 
 // forcing nodejs to use google or cloudflare's dns server
 import dns from "dns";
@@ -21,6 +22,7 @@ app.get('/', (req, res) => res.send("server is live..."));
 // routes
 app.use('/api/users', userRouter);
 app.use('/api/resumes', resumeRouter);
+app.use('/api/ai', aiRouter);
 
 app.listen(PORT, () => {
     console.log(`App is running on PORT: ${PORT}`);

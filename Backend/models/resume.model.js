@@ -62,7 +62,7 @@ const resumeSchema = new mongoose.Schema({
             default: ''
         }, 
     },
-    experince: [
+    experience : [
         {
             company: {type: String},
             position: {type: String},
@@ -83,7 +83,7 @@ const resumeSchema = new mongoose.Schema({
         {
             institution: {type: String},
             degree: {type: String},
-            feild: {type: String},
+            field: {type: String},
             graduation_date: {type: String},
             gpa: {type: String},
         }

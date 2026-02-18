@@ -11,10 +11,14 @@ import ExperienceForm from '../Components/ExperienceForm';
 import EducationForm from '../Components/EducationForm';
 import ProjectForm from '../Components/ProjectForm';
 import SkillsForm from '../Components/SkillsForm';
+import { useSelector } from 'react-redux';
+import api from '../configs/api';
+import toast from 'react-hot-toast';
 
 const ResumeBuilder = () => {
 
   const { resumeId } = useParams();
+  const { token } = useSelector(state => state.auth);
 
   const [resumeData, setResumeData] = useState({
     _id: '',
@@ -23,18 +27,41 @@ const ResumeBuilder = () => {
     professional_summary: '',
     experience: [],
     education: [],
-    project: [],
+    projects: [],
     skills: [],
     template: "classic",
     accent_color: "#3B82F6",
     public: false,
   });
 
+  // FUNCTION USED TO DISPALY DATA OF RESUME IN RESUME-BUILDER IS IT IS ALREADY SHAVED IN DATABASE
   const loadExistingResume = async () => {
-    const resume = dummyResumeData.find(resume => resume._id === resumeId);
-    if(resume) {
-      setResumeData(resume);
-      document.title = resume.title
+    try {
+      const { data } = await api.get('/api/resumes/get/' + resumeId, {
+        headers: {Authorization: token}
+      });
+      // if(data.resume) {
+      //   setResumeData(data.resume);
+      //   // THIS WILL DISPALE THE RESUME TITLE IN THE TITLE BAR OF WEB BROWSER 
+      //   document.title = data.resume.title;
+      // }
+      if (data.resume) {
+        setResumeData(prev => ({
+          ...prev,                 // 👈 defaults safe
+          ...data.resume,
+          experience: data.resume.experience || [],
+          education: data.resume.education || [],
+          projects: data.resume.projects || [],
+          skills: data.resume.skills || [],
+          template: data.resume.template || "classic",
+          accent_color: data.resume.accent_color || "#3B82F6",
+          personal_info: data.resume.personal_info || {},
+        }));
+
+        document.title = data.resume.title || "Resume Builder";
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -58,7 +85,19 @@ const ResumeBuilder = () => {
 
   // function to make resume public-shareable and private-not sharable
   const changeResumeVisibility = async () => {
-    setResumeData({...resumeData, public: !resumeData.public});
+    try {
+      const formData = new FormData();
+      formData.append("resumeId", resumeId);
+      formData.append("resumeData", JSON.stringify({public: !resumeData.public}));
+
+      const { data } = await api.put('/api/resumes/update', formData, {
+        headers: {Authorization: token}
+      });
+      setResumeData({...resumeData, public: !resumeData.public});
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(console.error("Error saving resume: ", error));  
+    }
   };
 
   // function to share resume
@@ -76,7 +115,44 @@ const ResumeBuilder = () => {
   // function to donwload resume
   const donwloadResume = () => {
     window.print();
-  } 
+  };
+
+  // FUNCTION TO SAVE A RESUME
+  const saveResume = async () => {
+    try {
+      let updatedResumeData = structuredClone(resumeData);
+
+      // REMOVE IMAGE FROM UPDATED-RESUME-DATA
+      if(typeof resumeData.personal_info.image === 'object') {
+        delete updatedResumeData.personal_info.image;
+      }
+
+      const formData = new FormData();
+      formData.append("resumeId", resumeId);
+      formData.append("resumeData", JSON.stringify(updatedResumeData));
+      removeBackground && formData.append("removeBackground", "yes");
+      typeof  resumeData.personal_info.image === 'object' && formData.append("image", resumeData.personal_info.image);
+
+      const { data } = await api.put('/api/resumes/update', formData, {
+        headers: {Authorization: token}
+      });
+      setResumeData(data.resume);
+      // setResumeData(prev => ({
+      //   ...prev,
+      //   ...data.resume,
+      //   experience: data.resume.experience || [],
+      //   education: data.resume.education || [],
+      //   project: data.resume.project || [],
+      //   skills: data.resume.skills || [],
+      //   template: data.resume.template || prev.template || "classic",
+      //   accent_color: data.resume.accent_color || prev.accent_color || "#3B82F6",
+      //   personal_info: data.resume.personal_info || {},
+      // }));
+      toast.success(data.message);
+    } catch (error) {
+      console.error("Error saving resume: ", error);
+    }
+  };
 
 
 
@@ -160,7 +236,7 @@ const ResumeBuilder = () => {
                   />
                 )}
 
-                {/* PROFESSIONAL EXPERIENCE SECTION */}
+                {/* JOB EXPERIENCE SECTION */}
                 {activeSection.id === "experience" && (
                   <ExperienceForm
                     data={resumeData.experience}
@@ -179,8 +255,8 @@ const ResumeBuilder = () => {
                 {/* PROJECT DETAILS SECTION */}
                 {activeSection.id === "projects" && (
                   <ProjectForm
-                    data={resumeData.project}
-                    onChange={(data) => setResumeData(prev => ({...prev, project:data}))}
+                    data={resumeData.projects}
+                    onChange={(data) => setResumeData(prev => ({...prev, projects:data}))}
                   />
                 )}
 
@@ -194,7 +270,20 @@ const ResumeBuilder = () => {
             </div>
 
             {/* SAVE CHANGES BUTTON */}
-            <button className='bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>Save Changes</button>
+            <button 
+              // onClick={() => {toast.promise(saveResume, {loading: 'Saving...'})}}
+              onClick={() =>
+                toast.promise(
+                  saveResume(),
+                  {
+                    loading: "Saving...",
+                  }
+                )
+              }
+              className='bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'
+            >
+              Save Changes
+            </button>
 
           </div>
         </div>
@@ -234,11 +323,18 @@ const ResumeBuilder = () => {
           </div>
 
           {/* RESUME PREVIEW */}
-          <ResumePreview 
+          {/* <ResumePreview 
             data={resumeData} 
             template={resumeData.template} 
             accentColor={resumeData.accent_color}
-          />
+          /> */}
+          {resumeData?.template && (
+            <ResumePreview 
+              data={resumeData} 
+              template={resumeData.template} 
+              accentColor={resumeData.accent_color}
+            />
+          )}
         </div>
 
       </div>

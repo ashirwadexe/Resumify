@@ -18,7 +18,7 @@ const HowItWorks = () => {
         {/* BADGE */}
         <div>
             <div className="flex justify-center">
-                <div className="inline-flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-4 py-1.5">
+                <div className="inline-flex items-center gap-2 text-sm text-orange-600 bg-orange-400/10 rounded-full px-4 py-1.5">
                     <Zap className="w-4 h-4" />
                     <span>Working</span>
                 </div>

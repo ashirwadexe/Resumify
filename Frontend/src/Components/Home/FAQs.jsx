@@ -46,7 +46,7 @@ const FAQs = () => {
                     alt=""
                 />
                 <div>
-                    <p className="text-green-600 text-sm font-medium">FAQ's</p>
+                    <p className="text-orange-600 text-sm font-medium">FAQ's</p>
                     <h1 className="text-3xl text-slate-700 font-semibold">Looking for answer?</h1>
                     <p className="text-sm text-slate-500 mt-2 pb-4">
                         Ship Beautiful Frontends Without the Overhead — Customizable, Scalable and Developer-Friendly UI Components.

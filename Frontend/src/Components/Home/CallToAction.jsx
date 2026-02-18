@@ -5,7 +5,7 @@ const CallToAction = () => {
   return (
     <div id='cta' className='flex flex-col items-center my-10 scroll-mt-12 pb-20'>
 
-        <section className="flex flex-col items-center justify-center mx-auto max-md:mx-2 max-md:px-2 max-w-5xl w-full text-center rounded-2xl py-16 bg-green-50/70">
+        <section className="flex flex-col items-center justify-center mx-auto max-md:mx-2 max-md:px-2 max-w-5xl w-full text-center rounded-2xl py-16 bg-orange-50/70">
             <img src="/logo.svg" alt="logo" />
             <h1 className="text-2xl md:text-3xl font-medium text-slate-900 max-w-2xl mt-5">
                 Build beautiful websites with Prebuiltui.
@@ -15,7 +15,7 @@ const CallToAction = () => {
             </p>
             <div className="flex gap-2">
                 <Link to='/app?state=register'>
-                    <button className="px-8 py-2.5 mt-4 text-sm bg-green-600 hover:scale-105 transition duration-300 text-white">
+                    <button className="px-8 py-2.5 mt-4 text-sm bg-orange-600 hover:scale-105 transition duration-300 text-white">
                     Get Started
                     </button>
                 </Link>

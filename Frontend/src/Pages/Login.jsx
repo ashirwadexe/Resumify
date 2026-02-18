@@ -43,7 +43,7 @@ const Login = () => {
         <form
             onSubmit={handleSubmit}
             className="sm:w-87.5 w-full text-center bg-white border border-gray-300/60 rounded-2xl px-8">
-            <h1 className="text-gray-900 text-3xl mt-10 font-medium">
+            <h1 className="text-orange-500 text-3xl mt-10 font-medium">
                 {state === "login" ? "Login" : "Sign Up"}
             </h1>
 
@@ -67,18 +67,18 @@ const Login = () => {
             </div>
 
             <div className="mt-4 text-left">
-                <button className="text-sm text-green-400 hover:underline">
+                <button className="text-sm text-orange-400 hover:underline">
                     Forget password?
                 </button>
             </div>
 
-            <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-green-600 hover:bg-green-500 transition " >
+            <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-orange-600 hover:bg-orange-500 transition " >
                 {state === "login" ? "Login" : "Sign up"}
             </button>
 
             <p onClick={() => setState(prev => prev === "login" ? "register" : "login") } className="text-gray-400 text-sm mt-3 mb-11 cursor-pointer" >
                 {state === "login" ? "Don't have an account?" : "Already have an account?"}
-                <span className="text-green-400 hover:underline ml-1">click here</span>
+                <span className="text-orange-400 hover:underline ml-1">click here</span>
             </p>
         </form>
       </div>

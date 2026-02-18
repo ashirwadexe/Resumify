@@ -42,7 +42,7 @@ export const deleteResume = async (req, res) => {
 
         // return success message 
         return res.status(200).json({
-            message: "Resume deleted successfully",
+            message: "Resume deleted 🥹",
         });
 
     } catch (error) {
@@ -121,7 +121,7 @@ export const updateResume = async (req, res) => {
         // this file property will be added uisng multer middleware
         const image = req.file;
 
-        let resumeDataCopy = JSON.parse(resumeData);
+        let resumeDataCopy = JSON.parse(JSON.stringify(resumeData));
 
         if(image) {
             const imageBufferData = fs.createReadStream(image.path);
@@ -141,7 +141,7 @@ export const updateResume = async (req, res) => {
         const updatedResume = await Resume.findOneAndUpdate({userId, _id: resumeId}, resumeDataCopy, { new: true});
         
         return res.status(200).json({
-            message: "Saved Successfully",
+            message: "Title Updated🥳",
             updateResume
         });
 

@@ -1,9 +1,15 @@
+import { ArrowRight } from 'lucide-react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Banner = () => {
   return (
-    <div className="w-full py-2.5 font-medium text-sm text-orange-800 text-center bg-gradient-to-r from-[#FFB84D] to-[#FFF4E8]">
-        <p><span className="px-3 py-1 rounded-lg text-white bg-orange-600 mr-2">New</span>AI Website Builder ~ Resumify</p>
+    <div class="flex flex-wrap items-center justify-center w-full py-2 font-medium text-sm text-white text-center bg-gradient-to-b from-orange-500 to-orange-600">
+      <p>Templates are live on resumify!</p>
+      <Link to='/app?state=login' class="flex items-center gap-1 px-3 py-1 text-xs rounded-md text-orange-600 bg-white hover:bg-slate-200 transition active:scale-95 ml-3">
+          Check it out
+          <ArrowRight className='size-4'/>
+      </Link>
     </div>
   )
 }

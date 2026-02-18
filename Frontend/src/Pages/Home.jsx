@@ -7,12 +7,14 @@ import CallToAction from '../Components/Home/CallToAction'
 import Footer from '../Components/Home/Footer'
 import FAQs from '../Components/Home/FAQs'
 import HowItWorks from '../Components/Home/HowItWorks'
+import ImageSlider from '../Components/Home/ImageSlider'
 
 const Home = () => {
   return (
     <div>
       <Banner/>
       <Hero/>
+      <ImageSlider/>
       <Features/>
       <HowItWorks/>
       <Testimonial/>

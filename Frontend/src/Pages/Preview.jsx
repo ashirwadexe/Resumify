@@ -35,7 +35,7 @@ const Preview = () => {
         <ResumePreview 
           data={resumeData} 
           template={resumeData.template} 
-          accentColor={resumeData.accentColor}
+          accentColor={resumeData.accent_color}
           classes='py-4 bg-white'
         />
       </div>

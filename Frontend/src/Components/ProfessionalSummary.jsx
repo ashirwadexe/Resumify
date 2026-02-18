@@ -11,9 +11,9 @@ const ProfessionalSummary = ({data, onChange, setResumeData}) => {
 
     // FUNCTION FOR AI ENHANCEMENT OF SUMMARY ADDED IN AI ENHACE BUTTON
     const generateSummary = async () => {
+        setIsGenerating(true);
+        const prompt = `enhance my professional summary: "${data}"`;
         try {
-            setIsGenerating(true);
-            const prompt = `enhance my professional summary: "${data}"`;
             const response = await api.post('/api/ai/enhance-pro-sum', 
                 { userContent: prompt },
                 { headers: {Authorization: token}}

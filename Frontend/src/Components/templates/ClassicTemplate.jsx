@@ -96,7 +96,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {data.projects && data.projects.length > 0 && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
-                        projectsS
+                        PROJECTS
                     </h2>
 
                     <ul className="space-y-3 ">

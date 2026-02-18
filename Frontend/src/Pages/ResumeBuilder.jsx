@@ -137,17 +137,6 @@ const ResumeBuilder = () => {
         headers: {Authorization: token}
       });
       setResumeData(data.resume);
-      // setResumeData(prev => ({
-      //   ...prev,
-      //   ...data.resume,
-      //   experience: data.resume.experience || [],
-      //   education: data.resume.education || [],
-      //   project: data.resume.project || [],
-      //   skills: data.resume.skills || [],
-      //   template: data.resume.template || prev.template || "classic",
-      //   accent_color: data.resume.accent_color || prev.accent_color || "#3B82F6",
-      //   personal_info: data.resume.personal_info || {},
-      // }));
       toast.success(data.message);
     } catch (error) {
       console.error("Error saving resume: ", error);
@@ -323,11 +312,7 @@ const ResumeBuilder = () => {
           </div>
 
           {/* RESUME PREVIEW */}
-          {/* <ResumePreview 
-            data={resumeData} 
-            template={resumeData.template} 
-            accentColor={resumeData.accent_color}
-          /> */}
+          
           {resumeData?.template && (
             <ResumePreview 
               data={resumeData} 

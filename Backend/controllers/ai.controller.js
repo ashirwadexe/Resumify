@@ -27,7 +27,7 @@ export const enhanceProfessionalSummary = async (req, res) => {
         });
 
         const enhancedContent = response.choices[0].message.content;
-        return response.status(200).json({
+        return res.status(200).json({
             enhancedContent
         })
     } catch (error) {

@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "resumify-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "an ai-powered resume builder platform",
   "main": "server.js",
   "type": "module",
   "scripts": {

@@ -15,7 +15,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: "https://resumify-ashirwad.netlify.app",
+  credentials: true
+}));
+
 
 app.get('/', (req, res) => res.send("server is live..."));
 
